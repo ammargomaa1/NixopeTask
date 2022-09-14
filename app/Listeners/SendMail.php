@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendMail
+class SendMail implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -28,6 +28,6 @@ class SendMail
      */
     public function handle(UserAdded $event)
     {
-        dispatch(new SendMailJob($event->user));
+        dump('Email will be sent to ' . $event->user->email);
     }
 }
